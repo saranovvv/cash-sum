@@ -1,14 +1,14 @@
 import tkinter as tk
-import mysql.connector
-
+import top.top as header
+import ms.main_site as ms
 
 root = tk.Tk()
 root.title("Cash&Sum by saranov")
 root.geometry("1000x500")
 
-top_frame = tk.Frame(root, bg="red", width=1000, height=50)
-top_frame.pack()
+top_frame = header.test(root,1000, 50, "red")
+top_frame.place()
 
-
+main_site = ms.main_site()
 
 root.mainloop()
