@@ -1,32 +1,23 @@
-import tkinter as tk
-import top.top as header
-import ms.main_site as mains
-import ss.sum as sums
+from imp import *
 
-root = tk.Tk()
-root.title("Cash&Sum by saranov")
-root.geometry("1000x500")
-root.update_idletasks()
+class start():
+    title = "Cash&Sum by srv"
+    def __init__(self):
+        pass
 
+    def log(self):
+        subprocess.run(["python3", "../log/main.py"])
+    def test(self):
+        print("test")
+    def startwindow(self):
+        root = tk.Tk()
+        root.geometry("500x500")
+        tk.Button(root, text="Zaloguj się", command=self.log).pack()
+        tk.Button(root, text="test", command=self.test).pack()
+        
+        root.mainloop()
 
-tk.Grid.rowconfigure(root, 0, weight = 1)
-tk.Grid.columnconfigure(root, 0, weight = 1)
-
-
-
-top_frame = header.topframe(root,root.winfo_width(),100,"red")
-top_frame.place()
-top_frame.opcje()
-top_frame.test()
-
-main_site = mains.main_site(root, 800, 400, "green")
-main_site.place()
-
-
-
-
-
-sum_site = sums.sum_frame(root, 200, 400, "blue")
-sum_site.place()
-
-root.mainloop()
+if __name__ == "__main__":
+    root = start()
+    root.startwindow()
+    
