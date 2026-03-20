@@ -7,8 +7,10 @@ class start():
 
     def log(self):
         subprocess.run(["python3", "../log/main.py"])
+
     def test(self):
         print("test")
+
     def startwindow(self):
         root = tk.Tk()
         root.geometry("500x500")
