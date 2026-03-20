@@ -1,5 +1,4 @@
-from imp import *
-
+import tkinter as tk
 class top_log_frame():
     def __init__(self):
         pass
