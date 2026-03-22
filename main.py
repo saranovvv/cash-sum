@@ -1,36 +1,42 @@
 import tkinter as tk
-import time
-# import subprocess
-
 from log.mainlog import *
+from mainfr.main_frame import *
 
 class start():
     title = "Cash&Sum by srv"
     def __init__(self):
         pass
 
-    def log(self, main_frame, root):
-        main_frame.pack_forget()
-        logowanie = log()
-        logowanie.startlog(root)
+    def centerwindow(self, root, width, height):
+        root.update_idletasks()
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        x = (screen_width - width) // 2
+        y = (screen_height - height) // 2
+        root.geometry(f"{width}x{height}+{x}+{y}")
 
-    def test(self):
-        print("test")
+    
 
     def startwindow(self):
         root = tk.Tk()
-        root.geometry("500x500")
+        self.centerwindow(root, 1000, 800)
 
-        main_frame = tk.Frame(root, width=20, height=10)
-        main_frame.pack()
+        # main_frame(root)
+        mf = main_frame(root)
+        self.index = 0
+        self.framelist = [mf, log_frame(root)]
+        self.framelist[1].forget()
 
-        b1 = tk.Button(main_frame, text="Logowanie", command=lambda : self.log(main_frame, root))
-        b1.pack()
-
-
-
+        tk.Button(root, text="logowanie", command=self.button).pack()
 
         root.mainloop()
+
+    def button(self):
+        self.framelist[self.index].forget()
+        self.index = (self.index + 1) % len(self.framelist)
+        self.framelist[self.index].tkraise()
+        self.framelist[self.index].pack()
+
 
 if __name__ == "__main__":
     root = start()
