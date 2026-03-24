@@ -1,6 +1,7 @@
 import tkinter as tk
 from log.mainlog import *
 from mainfr.main_frame import *
+from top.top_frame import *
 
 class start():
     title = "Cash&Sum by srv"
@@ -21,10 +22,12 @@ class start():
         root = tk.Tk()
         self.centerwindow(root, 1000, 800)
 
-        # main_frame(root)
         mf = main_frame(root)
+        lf = log_frame(root)
+
+
         self.index = 0
-        self.framelist = [mf, log_frame(root)]
+        self.framelist = [mf, lf]
         self.framelist[1].forget()
 
         tk.Button(root, text="logowanie", command=self.button).pack()
