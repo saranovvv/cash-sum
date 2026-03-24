@@ -1,47 +1,43 @@
 import tkinter as tk
-from log.mainlog import *
-from mainfr.main_frame import *
 from top.top_frame import *
+from mainfr.main_frame import *
+from sum.sum_frame import *
+from log.log_frame import *
 
-class start():
-    title = "Cash&Sum by srv"
+
+
+
+
+class start(tk.Tk):
     def __init__(self):
-        pass
+        super().__init__()
 
-    def centerwindow(self, root, width, height):
-        root.update_idletasks()
-        screen_width = root.winfo_screenwidth()
-        screen_height = root.winfo_screenheight()
+        self.centerwindow(1000, 800)
+        self.startwindow()
+
+        self.mainloop()
+    
+    def startwindow(self):
+        for i in range(10):
+            self.grid_columnconfigure(i, weight=1)
+            self.grid_rowconfigure(i, weight=1)
+
+        self.framelist = [top_frame(self), main_frame(self), sum_frame(self), log_frame(self)]
+        self.framelist[3].grid_forget()
+
+
+    def centerwindow(self, width, height):
+        self.update_idletasks()
+        self.title("Cash-Sum by saranov")
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
         x = (screen_width - width) // 2
         y = (screen_height - height) // 2
-        root.geometry(f"{width}x{height}+{x}+{y}")
-
-    
-
-    def startwindow(self):
-        root = tk.Tk()
-        self.centerwindow(root, 1000, 800)
-
-        mf = main_frame(root)
-        lf = log_frame(root)
-
-
-        self.index = 0
-        self.framelist = [mf, lf]
-        self.framelist[1].forget()
-
-        tk.Button(root, text="logowanie", command=self.button).pack()
-
-        root.mainloop()
-
-    def button(self):
-        self.framelist[self.index].forget()
-        self.index = (self.index + 1) % len(self.framelist)
-        self.framelist[self.index].tkraise()
-        self.framelist[self.index].pack()
+        self.geometry(f"{width}x{height}+{x}+{y}")
 
 
 if __name__ == "__main__":
-    root = start()
-    root.startwindow()
-    
+    try:
+        start()
+    except:
+        print(AttributeError)

@@ -5,8 +5,5 @@ import tkinter as tk
 class main_frame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        self.config(bg="red", width=100, height=100)
-        self.pack()
-
-
-
+        self.config(bg="red")
+        self.grid(row=2, column=0, columnspan=7, rowspan=8, sticky=tk.NSEW)
